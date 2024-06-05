@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: movies
+  main:
+    web-application-type: servlet
+  data:
+    mongodb:
+      uri: mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_CLUSTER}
+      database: ${MONGO_DATABASE}
+
+
+
+
+
