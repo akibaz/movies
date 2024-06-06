@@ -1,5 +1,6 @@
 package dev.akibaz.movies.movie;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +16,9 @@ public class MovieService {
 
     public List<Movie> getALlMovies() {
         return movieDAO.selectAllMovies();
+    }
+
+    public Movie getMovieById(ObjectId objectId) {
+        return movieDAO.selectMovieById(objectId).orElseThrow();
     }
 }

@@ -1,6 +1,7 @@
-package dev.akibaz.journey;
+package dev.akibaz.movies.journey;
 
 import dev.akibaz.movies.movie.Movie;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,5 +34,33 @@ public class MovieIntegrationTest {
                 .getResponseBody();
         assertThat(allMovies).isNotEmpty();
         assertThat(allMovies).hasSize(10);
+    }
+
+    @Test
+    void canGetMovieById() {
+        // get all movies
+        List<Movie> allMovies = client.get()
+                .uri(apiPath)
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .expectBodyList(new ParameterizedTypeReference<Movie>() {
+                })
+                .returnResult()
+                .getResponseBody();
+        assertThat(allMovies).isNotEmpty();
+        // get a movie by id
+        ObjectId movieId = allMovies.get(0).getId();
+        Movie actual = client.get()
+                .uri(apiPath + "/{movieId}", movieId)
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .expectBody(Movie.class)
+                .returnResult()
+                .getResponseBody();
+        assertThat(allMovies).contains(actual);
     }
 }
