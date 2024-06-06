@@ -1,5 +1,6 @@
-package dev.akibaz.movies;
+package dev.akibaz.movies.movie;
 
+import dev.akibaz.movies.Review;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

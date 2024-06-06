@@ -1,4 +1,4 @@
-package dev.akibaz.movies;
+package dev.akibaz.movies.movie;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,28 +6,27 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-class MovieServiceTest {
-    private MovieService underTest;
+class MovieDataAccesServiceTest {
+    private MovieDataAccesService underTest;
     @Mock
-    private MovieDAO movieDAO;
+    private MovieRepository movieRepository;
 
     @BeforeEach
     void setUp() {
-        underTest = new MovieService(movieDAO);
+        underTest = new MovieDataAccesService(movieRepository);
     }
 
     @Test
-    void getALlMovies() {
+    void selectAllMovies() {
         // Given
 
         // When
-        underTest.getALlMovies();
+        underTest.selectAllMovies();
 
         //Then
-        verify(movieDAO).selectAllMovies();
+        verify(movieRepository).findAll();
     }
 }

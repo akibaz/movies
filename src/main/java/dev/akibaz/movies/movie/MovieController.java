@@ -1,4 +1,4 @@
-package dev.akibaz.movies;
+package dev.akibaz.movies.movie;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

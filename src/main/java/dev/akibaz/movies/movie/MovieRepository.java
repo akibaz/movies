@@ -1,4 +1,4 @@
-package dev.akibaz.movies;
+package dev.akibaz.movies.movie;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
