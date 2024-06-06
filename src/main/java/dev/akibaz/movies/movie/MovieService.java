@@ -23,4 +23,9 @@ public class MovieService {
         return movieDAO.selectMovieById(movieId).orElseThrow(() ->
                 new ResourceNotFoundException("Movie with id: %s not found.".formatted(movieId)));
     }
+
+    public Movie getMovieByImdbId(String imdbId) {
+        return movieDAO.selectMovieByImdbId(imdbId).orElseThrow(() ->
+                new ResourceNotFoundException("Movie with imdbId: %s not found.".formatted(imdbId)));
+    }
 }

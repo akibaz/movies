@@ -53,7 +53,7 @@ public class MovieIntegrationTest {
         // get a movie by id
         ObjectId movieId = allMovies.get(0).getId();
         Movie actual = client.get()
-                .uri(apiPath + "/{movieId}", movieId)
+                .uri(apiPath + "/movie/{movieId}", movieId)
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus()
@@ -61,6 +61,34 @@ public class MovieIntegrationTest {
                 .expectBody(Movie.class)
                 .returnResult()
                 .getResponseBody();
-        assertThat(allMovies).contains(actual);
+        assertThat(actual).isIn(allMovies);
+    }
+
+    @Test
+    void canGetMovieByImdbId() {
+        // get all movies
+        List<Movie> allMovies = client.get()
+                .uri(apiPath)
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .expectBodyList(new ParameterizedTypeReference<Movie>() {
+                })
+                .returnResult()
+                .getResponseBody();
+        assertThat(allMovies).isNotEmpty();
+        // get a movie by imdbId
+        String imdbId = allMovies.get(0).getImdbId();
+        Movie actual = client.get()
+                .uri(apiPath + "/{imdbId}", imdbId)
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .expectBody(Movie.class)
+                .returnResult()
+                .getResponseBody();
+        assertThat(actual).isIn(allMovies);
     }
 }

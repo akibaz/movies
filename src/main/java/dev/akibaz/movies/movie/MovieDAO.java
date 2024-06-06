@@ -9,4 +9,6 @@ public interface MovieDAO {
     List<Movie> selectAllMovies();
 
     Optional<Movie> selectMovieById(ObjectId movieId);
+
+    Optional<Movie> selectMovieByImdbId(String imdbId);
 }

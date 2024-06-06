@@ -60,4 +60,15 @@ class MovieDataAccesServiceTest {
         verify(movieRepository).findById(movieId);
         assertThat(actual).isNotPresent();
     }
+
+    @Test
+    void selectMovieByImdbId() {
+        // Given
+        String imdbId = "imdbId";
+        // When
+        underTest.selectMovieByImdbId(imdbId);
+
+        //Then
+        verify(movieRepository).findMovieByImdbId(imdbId);
+    }
 }

@@ -27,10 +27,18 @@ public class MovieController {
         );
     }
 
-    @GetMapping("/{movieId}")
+    @GetMapping("/movie/{movieId}")
     public ResponseEntity<Movie> getMovieById(@PathVariable("movieId") ObjectId movieId) {
         return new ResponseEntity<>(
                 movieService.getMovieById(movieId),
+                HttpStatus.OK
+        );
+    }
+
+    @GetMapping("/{imdbId}")
+    public ResponseEntity<Movie> getMovieByImdbId(@PathVariable("imdbId") String imdbId) {
+        return new ResponseEntity<>(
+                movieService.getMovieByImdbId(imdbId),
                 HttpStatus.OK
         );
     }

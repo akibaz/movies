@@ -23,4 +23,9 @@ public class MovieDataAccesService implements MovieDAO {
     public Optional<Movie> selectMovieById(ObjectId movieId) {
         return movieRepository.findById(movieId);
     }
+
+    @Override
+    public Optional<Movie> selectMovieByImdbId(String imdbId) {
+        return movieRepository.findMovieByImdbId(imdbId);
+    }
 }
