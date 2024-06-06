@@ -1,5 +1,6 @@
 package dev.akibaz.movies.movie;
 
+import dev.akibaz.movies.exception.ResourceNotFoundException;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -47,4 +49,18 @@ class MovieServiceTest {
         verify(movieDAO).selectMovieById(movieId);
         assertThat(actual).isNotNull();
     }
+
+    @Test
+    void getMovieByIdThrowsResourceNotFoundExceptionWhenMovieDoesNotExist() {
+        // Given
+        ObjectId movieId = ObjectId.get();
+        when(movieDAO.selectMovieById(movieId)).thenReturn(Optional.empty());
+        // When
+
+        //Then
+        assertThatThrownBy(() -> underTest.getMovieById(movieId))
+                .isInstanceOf(ResourceNotFoundException.class)
+                .hasMessage("Movie with id: %s not found.".formatted(movieId));
+    }
+
 }
