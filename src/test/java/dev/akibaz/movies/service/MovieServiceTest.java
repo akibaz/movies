@@ -1,6 +1,8 @@
-package dev.akibaz.movies.movie;
+package dev.akibaz.movies.service;
 
+import dev.akibaz.movies.dao.MovieDAO;
 import dev.akibaz.movies.exception.ResourceNotFoundException;
+import dev.akibaz.movies.model.Movie;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

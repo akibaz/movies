@@ -1,5 +1,6 @@
-package dev.akibaz.movies.movie;
+package dev.akibaz.movies.dao;
 
+import dev.akibaz.movies.model.Movie;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

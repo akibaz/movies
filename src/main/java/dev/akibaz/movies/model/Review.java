@@ -1,4 +1,4 @@
-package dev.akibaz.movies;
+package dev.akibaz.movies.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

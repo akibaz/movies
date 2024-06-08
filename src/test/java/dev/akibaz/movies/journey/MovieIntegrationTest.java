@@ -1,6 +1,6 @@
 package dev.akibaz.movies.journey;
 
-import dev.akibaz.movies.movie.Movie;
+import dev.akibaz.movies.model.Movie;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

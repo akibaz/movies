@@ -1,5 +1,7 @@
-package dev.akibaz.movies.movie;
+package dev.akibaz.movies.controller;
 
+import dev.akibaz.movies.model.Movie;
+import dev.akibaz.movies.service.MovieService;
 import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
