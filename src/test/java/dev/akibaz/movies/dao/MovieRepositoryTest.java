@@ -63,6 +63,17 @@ class MovieRepositoryTest extends AbstractTestcontainersUnitTest {
     void findMovieByImdbIdReturnsEmptyOptionalWhenMovieNotFound() {
         // Given
         String imdbId = "tt3915174";
+        // When
+        Optional<Movie> actual = underTest.findMovieByImdbId(imdbId);
+
+        //Then
+        assertThat(actual).isNotPresent();
+    }
+
+    @Test
+    void existsMovieByImdbId() {
+        // Given
+        String imdbId = "tt3915174";
         Movie movie = new Movie(
                 new ObjectId("66604a2a27461237f2a34c08"),
                 imdbId,
@@ -86,9 +97,19 @@ class MovieRepositoryTest extends AbstractTestcontainersUnitTest {
         underTest.save(movie);
 
         // When
-        Optional<Movie> actual = underTest.findMovieByImdbId("imdbId");
-
+        boolean actual = underTest.existsMovieByImdbId(imdbId);
         //Then
-        assertThat(actual).isNotPresent();
+        assertThat(actual).isTrue();
+    }
+
+    @Test
+    void existsMovieByImdbIdReturnsFalseWhenMovieDoesNotExist() {
+        // Given
+        String imdbId = "tt3915174";
+
+        // When
+        boolean actual = underTest.existsMovieByImdbId(imdbId);
+        //Then
+        assertThat(actual).isFalse();
     }
 }

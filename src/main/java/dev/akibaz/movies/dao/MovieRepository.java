@@ -10,4 +10,6 @@ public interface MovieRepository extends MongoRepository<Movie, ObjectId> {
 
     Optional<Movie> findMovieByImdbId(String imdbId);
 
+    boolean existsMovieByImdbId(String imdbId);
+
 }

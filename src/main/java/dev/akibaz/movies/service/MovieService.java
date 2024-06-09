@@ -13,7 +13,7 @@ import java.util.List;
 public class MovieService {
     private final MovieDAO movieDAO;
 
-    public MovieService(@Qualifier("mongoDb") MovieDAO movieDAO) {
+    public MovieService(MovieDAO movieDAO) {
         this.movieDAO = movieDAO;
     }
 

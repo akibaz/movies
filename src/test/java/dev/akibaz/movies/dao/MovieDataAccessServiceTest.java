@@ -15,14 +15,14 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class MovieDataAccesServiceTest {
-    private MovieDataAccesService underTest;
+class MovieDataAccessServiceTest {
+    private MovieDataAccessService underTest;
     @Mock
     private MovieRepository movieRepository;
 
     @BeforeEach
     void setUp() {
-        underTest = new MovieDataAccesService(movieRepository);
+        underTest = new MovieDataAccessService(movieRepository);
     }
 
     @Test
@@ -53,7 +53,7 @@ class MovieDataAccesServiceTest {
     void selectMovieByIdReturnsEmptyOptionalWhenMovieNotPresent() {
         // Given
         ObjectId movieId = new ObjectId();
-        when(movieRepository.findById(movieId)).thenReturn(Optional.ofNullable(null));
+        when(movieRepository.findById(movieId)).thenReturn(Optional.empty());
         // When
         Optional<Movie> actual = underTest.selectMovieById(movieId);
 
@@ -71,5 +71,17 @@ class MovieDataAccesServiceTest {
 
         //Then
         verify(movieRepository).findMovieByImdbId(imdbId);
+    }
+
+    @Test
+    void existsMovieByImdbId() {
+        // Given
+        String imdbId = "tt3915174";
+
+        // When
+        underTest.existsMovieByImdbId(imdbId);
+
+        //Then
+        verify(movieRepository).existsMovieByImdbId(imdbId);
     }
 }

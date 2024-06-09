@@ -12,4 +12,6 @@ public interface MovieDAO {
     Optional<Movie> selectMovieById(ObjectId movieId);
 
     Optional<Movie> selectMovieByImdbId(String imdbId);
+
+    boolean existsMovieByImdbId(String imdbId);
 }

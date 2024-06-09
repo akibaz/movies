@@ -7,11 +7,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-@Repository("mongoDb")
-public class MovieDataAccesService implements MovieDAO {
+@Repository
+public class MovieDataAccessService implements MovieDAO {
     private final MovieRepository movieRepository;
 
-    public MovieDataAccesService(MovieRepository movieRepository) {
+    public MovieDataAccessService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
     }
 
@@ -28,5 +28,10 @@ public class MovieDataAccesService implements MovieDAO {
     @Override
     public Optional<Movie> selectMovieByImdbId(String imdbId) {
         return movieRepository.findMovieByImdbId(imdbId);
+    }
+
+    @Override
+    public boolean existsMovieByImdbId(String imdbId) {
+        return movieRepository.existsMovieByImdbId(imdbId);
     }
 }
