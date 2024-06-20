@@ -21,7 +21,9 @@ class MovieRepositoryTest extends AbstractTestcontainersUnitTest {
 
     @BeforeEach
     void setUp() {
-        underTest.deleteAll();
+        if (!underTest.findAll().isEmpty()) {
+            underTest.deleteAll();
+        }
     }
 
     @Test
