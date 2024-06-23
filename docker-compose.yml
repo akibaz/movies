@@ -1,0 +1,7 @@
+services:
+  app:
+    container_name: movies-api
+    image: akibaz/movies-api
+    ports:
+      - "8090:8080"
+    restart: unless-stopped
