@@ -9,12 +9,13 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>dev.akibaz</groupId>
-	<artifactId>movies</artifactId>
+	<artifactId>movies-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>movies</name>
+	<name>movies-api</name>
 	<description>A simple APIs for movies</description>
 	<properties>
 		<java.version>17</java.version>
+		<docker.user>akibaz</docker.user>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -163,6 +164,41 @@
 						<test.server.port>${tomcat.http.port}</test.server.port>
 					</systemPropertyVariables>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.3</version>
+				<configuration>
+					<from>
+						<image>eclipse-temurin:17-jre</image>
+						<platforms>
+							<platform>
+								<architecture>arm64</architecture>
+								<os>linux</os>
+							</platform>
+							<platform>
+								<architecture>amd64</architecture>
+								<os>linux</os>
+							</platform>
+						</platforms>
+					</from>
+					<to>
+						<image>docker.io/${docker.user}/${project.artifactId}:${project.version}</image>
+						<tags>
+							<tag>latest</tag>
+						</tags>
+					</to>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
